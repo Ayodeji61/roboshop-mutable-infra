@@ -1,5 +1,5 @@
 dev:
-	rm -rf .terraform/
+	rm -rf .terraform*
 	git pull
 	terrafile -f env-dev/Terrafile
 	terraform init -backend-config=env-dev/backend.tfvars
