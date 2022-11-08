@@ -5,7 +5,6 @@ dev:
 	terraform init -backend-config=env-dev/backend.tfvars
 	terraform apply -auto-approve -var-file=env-dev/main.tfvars
 
-
 prod:
 	rm -rf .terraform*
 	git pull
