@@ -3,5 +3,5 @@ output "vpc" {
 }
 
 output "subnets" {
-  value = module.subnets
+  value = module.vpc.subnets
 }
