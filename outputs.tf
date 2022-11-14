@@ -3,5 +3,5 @@ output "vpc" {
 }
 
 output "aws_route_table" {
-  value = module.vpc.aws_route_table
+  value = module.subnets
 }
