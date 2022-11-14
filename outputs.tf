@@ -2,6 +2,6 @@ output "vpc" {
   value = module.vpc.vpc
 }
 
-output "aws_route_table" {
+output "subnets" {
   value = module.subnets
 }
