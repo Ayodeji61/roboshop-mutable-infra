@@ -18,11 +18,12 @@ vpc = {
       public = {
         cidr_block = ["10.0.255.0/24"]
         name       = "public"
+        }
       }
       subnet_availability_zones = ["us-east-1a", "us-east-1b"]
     }
   }
-}
+
 
 management_vpc = {
   vpc_id = "vpc-094c3e00e27d62194"
