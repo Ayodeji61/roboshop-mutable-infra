@@ -5,7 +5,7 @@ locals {
 
   frontend_private_subnets = lookup(lookup(lookup({ for k, v in module.vpc.private_subnets : "subnets" => v.subnets }, "subnets", null), "frontend", null), "subnets", null)
 
-  public_subnets = lookup({ for k, v in module.vpc.private_subnets : "subnets" => v.subnets }, "subnets", null)
+  public_subnets = lookup({ for k, v in module.vpc.public_subnets : "subnets" => v.subnets }, "subnets", null)
 }
 
 output "public_subnets" {
