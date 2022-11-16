@@ -6,6 +6,6 @@ module "vpc" {
 
 }
 
-output "apps_private_subnets" {
-  value = module.vpc.private_subnets
+output "private_subnets" {
+  value = {for k, v in module.vpc.private_subnets : k => v.subnets}
 }
