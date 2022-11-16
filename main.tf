@@ -6,6 +6,6 @@ module "vpc" {
 
 }
 
-//output "merged" {
- // value = merge(module.vpc.private_subnets.subnets)
-//}
+output "apps_private_subnets" {
+  value = module.vpc.private_subnets
+}
