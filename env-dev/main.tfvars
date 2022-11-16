@@ -1,3 +1,5 @@
+env = "dev"
+
 vpc = {
   vpc1 = {
     cidr_block            = "10.0.0.0/16"
@@ -44,4 +46,13 @@ docdb = {
   }
 }
 
-env = "dev"
+rds = {
+  db1 = {
+    allocated_storage    = 10
+    engine               = "aurora_mysql"
+    engine_version       = "5.7.mysql_aurora.2.03.2"
+    instance_class       = "db.t3.micro"
+    parameter_group_name = "default.mysql5.7"
+    skip_final_snapshot  = true
+  }
+}
