@@ -15,7 +15,7 @@ module "docdb" {
 
 module "rds" {
   source = "./vendor/modules/rds"
-  docdb    = var.rds
+  rds    = var.rds
   env    = var.env
   subnets = local.database_private_subnets[*].id
 }
