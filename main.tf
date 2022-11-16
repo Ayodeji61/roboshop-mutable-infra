@@ -6,3 +6,10 @@ module "vpc" {
 
 }
 
+module "docdb" {
+  source = "./vendor/modules/docdb"
+  docdb    = var.docdb
+  env    = var.env
+  subnets = local.database_private_subnets[*].id
+
+}

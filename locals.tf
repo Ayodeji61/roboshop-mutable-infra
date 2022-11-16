@@ -8,6 +8,6 @@ locals {
   public_subnets = lookup(lookup(lookup({ for k, v in module.vpc.public_subnets : "subnets" => v.subnets }, "subnets", null), "public", null), "subnets", null)
 }
 
-output "public_subnets" {
-  value = local.public_subnets[*].id
-}
+//output "public_subnets" {
+ // value = local.public_subnets[*].id
+//}
