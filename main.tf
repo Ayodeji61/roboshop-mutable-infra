@@ -12,11 +12,13 @@ module "vpc" {
 
 /*
 module "docdb" {
+  for_each = var.docdb
   source = "./vendor/modules/docdb"
   docdb    = var.docdb
   env    = var.env
   subnets = local.database_private_subnets[*].id
 }
+
 
 module "rds" {
   source = "./vendor/modules/rds"
@@ -26,3 +28,6 @@ module "rds" {
 }
 */
 
+output "app_subnets" {
+  value = module.vpc
+}
