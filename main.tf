@@ -30,5 +30,5 @@ module "rds" {
 
 
 output "app_subnets" {
-  value = [for i, j in module.vpc : j.private_subnets["app"]]
+  value = [for i, j in module.vpc : j.private_subnets["app"]["subnets"]]
 }
