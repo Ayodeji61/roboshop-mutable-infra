@@ -1,10 +1,16 @@
 module "vpc" {
+  for_each = var.vpc
   source = "./vendor/modules/vpc"
-  vpc    = var.vpc
+  cidr_block = each.value.cidr_block
+  additional_cidr_block = each.value.additional_cidr_block
+  private_subnets = each.value.private_subnets
+  public_subnets = each.value.public_subnets
+  subnet_availability_zones = each.value.subnet_availability_zones
   env    = var.env
   management_vpc = var.management_vpc
 }
 
+/*
 module "docdb" {
   source = "./vendor/modules/docdb"
   docdb    = var.docdb
@@ -18,3 +24,5 @@ module "rds" {
   env    = var.env
   subnets = local.database_private_subnets[*].id
 }
+*/
+
