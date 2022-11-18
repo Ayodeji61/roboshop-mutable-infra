@@ -19,11 +19,11 @@ module "docdb" {
   subnets = [for i, j in module.vpc : j.private_subnets["app"]["subnets"][*].id]
 }
 
-
+/*
 module "rds" {
   source = "./vendor/modules/rds"
   rds    = var.rds
   env    = var.env
   subnets = local.database_private_subnets[*].id
 }
-
+*/
