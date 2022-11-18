@@ -6,7 +6,7 @@ module "vpc" {
   private_subnets = each.value.private_subnets
   public_subnets = each.value.public_subnets
   subnet_availability_zones = each.value.subnet_availability_zones
-  env    = var.env
+  env            = var.env
   management_vpc = var.management_vpc
 }
 
@@ -16,7 +16,7 @@ module "docdb" {
   source = "./vendor/modules/docdb"
   docdb    = var.docdb
   env    = var.env
-  subnets = local.database_private_subnets[*].id
+  subnets = module.vpc["private_subnets"]
 }
 
 
@@ -28,6 +28,7 @@ module "rds" {
 }
 */
 
+
 output "app_subnets" {
-  value = lookup(module.vpc, "private_subnets", null)
+  value = module.vpc.private_subnets
 }
