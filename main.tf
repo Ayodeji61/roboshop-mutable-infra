@@ -13,7 +13,7 @@ module "vpc" {
 module "docdb" {
   for_each = var.docdb
   source = "./vendor/modules/docdb"
-  name = eah.key
+  name = each.key
   engine   = each.value.engine
   env    = var.env
   subnets = [for i, j in module.vpc : j.private_subnets["app"]["subnets"][*].id]
