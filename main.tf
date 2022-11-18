@@ -29,5 +29,5 @@ module "rds" {
 */
 
 output "app_subnets" {
-  value = module.vpc
+  value = lookup(module.vpc, "private_subnets", null)
 }
