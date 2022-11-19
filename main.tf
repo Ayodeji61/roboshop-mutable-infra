@@ -30,7 +30,6 @@ module "rds" {
   engine = each.value.engine
   engine_version = each.value.engine_version
   instance_class = each.value.instance_class
-  parameter_group_name = each.value.parameter_group_name
   skip_final_snapshot = each.value.skip_final_snapshot
 }
 
