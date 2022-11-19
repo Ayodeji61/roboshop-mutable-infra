@@ -16,7 +16,7 @@ module "docdb" {
   name = each.key
   engine   = each.value.engine
   env    = var.env
-  subnets = flatten([for i, j in module.vpc : j.private_subnets["app"]["subnets"][*].id])
+  subnets = flatten([for i, j in module.vpc : j.private_subnets["database"]["subnets"][*].id])
 }
 
 
@@ -24,7 +24,7 @@ module "rds" {
   source = "./vendor/modules/rds"
   for_each = var.rds
   env    = var.env
-  subnets = flatten([for i, j in module.vpc : j.private_subnets["app"]["subnets"][*].id])
+  subnets = flatten([for i, j in module.vpc : j.private_subnets["database"]["subnets"][*].id])
   name = each.key
   allocated_storage = each.value.allocated_storage
   engine = each.value.engine
@@ -38,7 +38,7 @@ module "elasticache" {
   source = "./vendor/modules/elasticache"
   for_each = var.elasticache
   env    = var.env
-  subnets = flatten([for i, j in module.vpc : j.private_subnets["app"]["subnets"][*].id])
+  subnets = flatten([for i, j in module.vpc : j.private_subnets["database"]["subnets"][*].id])
   name = each.key
   engine               = each.value.engine
   engine_version       = each.value.engine_version
@@ -50,7 +50,16 @@ module "rabbitmq" {
   source = "./vendor/modules/rabbitmq"
   for_each = var.rabbitmq
   env = var.env
-  subnets = flatten([for i, j in module.vpc : j.private_subnets["app"]["subnets"][*].id])
+  subnets = flatten([for i, j in module.vpc : j.private_subnets["database"]["subnets"][*].id])
   name = each.key
   instance_type = each.value.instance_type
 }
+
+/*
+module "cart" {
+  source = "./vendor/modules/app-setup"
+  env = var.env
+  subnets = flatten([for i, j in module.vpc : j.private_subnets["app"]["subnets"][*].id])
+
+}
+*/
