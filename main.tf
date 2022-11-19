@@ -61,7 +61,7 @@ module "cart" {
   env = var.env
   subnets = flatten([for i, j in module.vpc : j.private_subnets["app"]["subnets"][*].id])
   for_each = var.apps
-  name: each.key
+  name = each.key
   instance_type: each.value.instance_type
   min_size = each.value.min_size
   max_size = each.value.max_size
