@@ -6,12 +6,15 @@ docdb:
     source:  "https://github.com/Ayodeji61/tf-module-docdb"
     version: "main"
 
-
 rds:
     source:  "https://github.com/Ayodeji61/tf-module-rds"
     version: "main"
 
-
 elasticache:
     source:  "https://github.com/Ayodeji61/tf-module-elasticache"
+    version: "main"
+
+
+rabbitmq:
+    source:  "https://github.com/Ayodeji61/tf-module-rabbitmq"
     version: "main"
