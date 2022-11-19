@@ -22,15 +22,15 @@ module "docdb" {
 
 module "rds" {
   source = "./vendor/modules/rds"
-  rds    = var.rds
+  for_each = var.rds
   env    = var.env
   subnets = flatten([for i, j in module.vpc : j.private_subnets["app"]["subnets"][*].id])
-  allocated_storage = 10
-  engine = "aurora-mysql"
-  engine_version = "5.7.mysql_aurora.2.03.2"
-  instance_class = "db.t3.micro"
-  parameter_group_name = "default.mysql5.7"
-  skip_final_snapshot = true
-
+  name = each.key
+  allocated_storage = each.value.allocated_storage
+  engine = each.value.engine
+  engine_version = each.value.engine_version
+  instance_class = each.value.instance_class
+  parameter_group_name = each.value.parameter_group_name
+  skip_final_snapshot = each.value.skip_final_snapshot
 }
 
