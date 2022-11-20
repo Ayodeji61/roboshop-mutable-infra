@@ -115,5 +115,10 @@ private_zone_id = "Z05513823K3KFRDRSW6D8"
 PROMETHEUS_NODE = "172.31.7.61/32"
 
 alb = {
-  alb1 = {}
+  public = {
+    internal = false
+  }
+  private = {
+    internal = true
+  }
 }
