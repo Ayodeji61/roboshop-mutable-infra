@@ -73,6 +73,17 @@ module "apps" {
   vpc_cidr  = element([for i, j in module.vpc : j.vpc_cidr], 0)
 }
 
+locals {
+  alb = {
+    public = {
+      vpc_cidr = "0.0.0.0/0"
+    }
+    private = {
+      vpc_cidr = element([for i, j in module.vpc : j.vpc_cidr], 0)
+    }
+  }
+}
+
 module "alb" {
   source          = "./vendor/modules/alb"
   for_each        = var.alb
