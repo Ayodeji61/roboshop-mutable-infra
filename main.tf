@@ -60,7 +60,7 @@ module "rabbitmq" {
 module "apps" {
   source = "./vendor/modules/app-setup"
   env = var.env
-  subnets = flatten([for i, j in module.vpc : j.private_subnets["app"]["subnets"][*].id])
+  subnets = each.key == "frontend" ? flatten([for i, j in module.vpc : j.private_subnets["frontend"]["subnets"][*].id]) : flatten([for i, j in module.vpc : j.private_subnets["app"]["subnets"][*].id])
   for_each = var.apps
   name = each.key
   instance_type = each.value.instance_type
@@ -68,7 +68,7 @@ module "apps" {
   max_size = each.value.max_size
   vpc_id  = element([for i, j in module.vpc : j.vpc_id], 0)
   BASTION_NODE = var.BASTION_NODE
-  app_port_no             = each.value.app_port_no
+  app_port_no        = each.value.app_port_no
   PROMETHEUS_NODE    =  var.PROMETHEUS_NODE
   vpc_cidr  = element([for i, j in module.vpc : j.vpc_cidr], 0)
 }
