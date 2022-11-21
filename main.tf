@@ -80,6 +80,7 @@ module "alb" {
   source          = "./vendor/modules/alb"
   for_each        = local.merged_alb
   env             = var.env
+  subnets         = each.value.subnets
   name            = each.key
   vpc_id          = element([for i, j in module.vpc : j.vpc_id], 0)
   vpc_cidr        = element([for i, j in module.vpc : j.vpc_cidr], 0)
