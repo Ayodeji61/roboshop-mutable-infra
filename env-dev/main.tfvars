@@ -42,7 +42,13 @@ management_vpc = {
 
 docdb = {
   db1 = {
-    engine = "docdb"
+    engine              = "docdb"
+    skip_final_snapshot = true
+    nodes               = {
+      one = {
+        instance_class = "db.t3.medium"
+      }
+    }
   }
 }
 
@@ -50,12 +56,10 @@ rds = {
   db1 = {
     allocated_storage    = 10
     engine               = "aurora-mysql"
+    engine_version = "5.7.mysql_aurora.2.10.2"
+    instance_class = "db.t3.micro"
     skip_final_snapshot  = true
-    nodes = {
-      one = {
-        instance_class = "db.t3.medium"
-      }
-    }
+
   }
 }
 
