@@ -19,6 +19,7 @@ module "docdb" {
   env    = var.env
   subnets = flatten([for i, j in module.vpc : j.private_subnets["database"]["subnets"][*].id])
   nodes  = each.value.nodes
+  instance_class = each.value.instance_class
   skip_final_snapshot = each.value.skip_final_snapshot
 }
 
